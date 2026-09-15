@@ -1,1 +1,1 @@
-
+"""CookBase application package."""
