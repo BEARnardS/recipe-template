@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>CookBase</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
 
+<body>
+<header class="site-header">
+    <div>
+        <p class="eyebrow">COOKBASE</p>
+        <h1>Cooking Assistant</h1>
+        <p class="subtitle">
+            Track ingredients, manage recipes, and see what you can cook.
+        </p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="dashboard">
+        <article class="stat-card">
+            <span>Inventory Items</span>
+            <strong id="inventory-count">0</strong>
+        </article>
+
+        <article class="stat-card">
+            <span>Recipes</span>
+            <strong id="recipe-count">0</strong>
+        </article>
+
+        <article class="stat-card">
+            <span>Ready Recipes</span>
+            <strong id="ready-count">0</strong>
+        </article>
+    </section>
+
+    <section class="grid">
+        <article class="card">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">INVENTORY</p>
+                    <h2>Add Ingredient</h2>
+                </div>
+            </div>
+
+            <form id="inventory-form" class="form">
+                <label>
+                    Ingredient
+                    <input
+                        id="ingredient-name"
+                        type="text"
+                        required
+                        maxlength="100"
+                        placeholder="e.g. rice"
+                    >
+                </label>
+
+                <div class="form-row">
+                    <label>
+                        Quantity
+                        <input
+                            id="ingredient-quantity"
+                            type="number"
+                            step="any"
+                            min="0.0001"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Unit
+                        <select id="ingredient-unit">
+                            <option value="g">g</option>
+                            <option value="kg">kg</option>
+                            <option value="ml">ml</option>
+                            <option value="l">l</option>
+                            <option value="tsp">tsp</option>
+                            <option value="tbsp">tbsp</option>
+                            <option value="cup">cup</option>
+                            <option value="pcs">pcs</option>
+                        </select>
+                    </label>
+                </div>
+
+                <button type="submit">Add to Inventory</button>
+            </form>
+        </article>
+
+        <article class="card">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">RECIPES</p>
+                    <h2>Create Recipe</h2>
+                </div>
+            </div>
+
+            <form id="recipe-form" class="form">
+                <label>
+                    Recipe Name
+                    <input
+                        id="recipe-name"
+                        type="text"
+                        required
+                        maxlength="150"
+                        placeholder="e.g. Fried Rice"
+                    >
+                </label>
+
+                <label>
+                    Base Servings
+                    <input
+                        id="recipe-servings"
+                        type="number"
+                        min="1"
+                        max="10000"
+                        value="2"
+                        required
+                    >
+                </label>
+
+                <div>
+                    <div class="ingredient-header">
+                        <strong>Required Ingredients</strong>
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="add-recipe-ingredient"
+                        >
+                            + Add
+                        </button>
+                    </div>
+
+                    <div id="recipe-ingredients"></div>
+                </div>
+
+                <label>
+                    Instructions
+                    <textarea
+                        id="recipe-instructions"
+                        rows="5"
+                        placeholder="Describe the cooking steps."
+                    ></textarea>
+                </label>
+
+                <button type="submit">Create Recipe</button>
+            </form>
+        </article>
+    </section>
+
+    <section class="card">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CURRENT INVENTORY</p>
+                <h2>Your Ingredients</h2>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="inventory-table"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">RECIPES</p>
+                <h2>What Can You Cook?</h2>
+            </div>
+
+            <button
+                id="refresh-matches"
+                class="secondary-button"
+                type="button"
+            >
+                Refresh
+            </button>
+        </div>
+
+        <div id="recipe-results" class="recipe-results"></div>
+    </section>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
