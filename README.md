@@ -1,5 +1,5 @@
 # CookBase
-
+.
 A simple web-based cooking assistant for managing ingredient inventory, storing recipes, and determining what can be prepared with the ingredients currently available.
 
 ## Project Overview
